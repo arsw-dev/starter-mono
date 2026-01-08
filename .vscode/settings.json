@@ -25,6 +25,11 @@
       "fixable": true
     },
     {
+      "rule": "*/indent",
+      "severity": "off",
+      "fixable": true
+    },
+    {
       "rule": "*-spacing",
       "severity": "off",
       "fixable": true
