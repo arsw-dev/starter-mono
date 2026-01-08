@@ -17,7 +17,11 @@
     "@types/node": "catalog:tooling",
     "eslint": "catalog:linting",
     "husky": "catalog:tooling",
+    "lint-staged": "catalog:tooling",
     "tsx": "catalog:tooling",
     "typescript": "catalog:tooling"
+  },
+  "lint-staged": {
+    "*": "pnpm lint"
   }
 }
