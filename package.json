@@ -1,0 +1,21 @@
+{
+  "name": "starter-mono",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.27.0",
+  "author": "arsw-dev",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "dependencies": {
+    "@starter-mono/eslint-config": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:tooling",
+    "eslint": "catalog:linting",
+    "tsx": "catalog:tooling",
+    "typescript": "catalog:tooling"
+  }
+}

@@ -1,0 +1,17 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+catalogs:
+  linting:
+    '@antfu/eslint-config': 6.7.3
+    eslint: 9.39.2
+    eslint-plugin-format: 1.2.0
+  tooling:
+    '@types/node': 25.0.3
+    tsx: 4.21.0
+    typescript: 5.9.3

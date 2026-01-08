@@ -1,0 +1,23 @@
+{
+  "name": "@starter-mono/eslint-config",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.27.0",
+  "author": "arsw-dev",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./eslint.config.js"
+    },
+    "./create-config": {
+      "types": "./create-config.d.ts",
+      "default": "./create-config.js"
+    }
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "catalog:linting",
+    "eslint": "catalog:linting",
+    "eslint-plugin-format": "catalog:linting"
+  }
+}

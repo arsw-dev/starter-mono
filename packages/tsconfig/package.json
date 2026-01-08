@@ -1,0 +1,9 @@
+{
+  "name": "@starter-mono/tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.27.0",
+  "author": "arsw-dev",
+  "license": "MIT",
+  "files": ["*.json"]
+}
