@@ -1,10 +1,23 @@
+import type { PinoLogger } from 'hono-pino';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
 import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from '@starter-mono/http/status-codes';
+import { requestId } from 'hono/request-id';
 
-const app = new OpenAPIHono();
+import logger from './middleware/logger';
+
+type AppBindings = {
+  Variables: {
+    logger: PinoLogger;
+  };
+};
+
+const app = new OpenAPIHono<AppBindings>();
+
+app.use(requestId());
+app.use(logger());
 
 app.get('/', (c) => {
   return c.text('Hello Hono!');

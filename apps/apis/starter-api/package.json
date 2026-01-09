@@ -10,7 +10,11 @@
   "dependencies": {
     "@hono/node-server": "catalog:api",
     "@hono/zod-openapi": "catalog:api",
+    "dotenv": "catalog:shared",
     "hono": "catalog:api",
+    "hono-pino": "catalog:api",
+    "pino": "catalog:api",
+    "pino-pretty": "catalog:api",
     "zod": "catalog:shared"
   },
   "devDependencies": {
