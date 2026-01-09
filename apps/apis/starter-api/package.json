@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@hono/node-server": "catalog:api",
-    "hono": "catalog:api"
+    "@hono/zod-openapi": "catalog:api",
+    "hono": "catalog:api",
+    "zod": "catalog:shared"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:tooling",

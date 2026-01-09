@@ -10,6 +10,7 @@ packages:
 catalogs:
   api:
     '@hono/node-server': 1.19.6
+    '@hono/zod-openapi': 1.2.0
     hono: 4.11.3
 
   linting:
@@ -17,6 +18,9 @@ catalogs:
     eslint: 9.39.2
     eslint-plugin-drizzle: 0.2.3
     eslint-plugin-format: 1.2.0
+
+  shared:
+    zod: 4.3.5
 
   tooling:
     '@rollup/plugin-commonjs': 29.0.0
