@@ -57,6 +57,9 @@ catalogs:
     rollup:
       specifier: 4.55.1
       version: 4.55.1
+    rollup-plugin-dts:
+      specifier: 6.3.0
+      version: 6.3.0
     tslib:
       specifier: 2.8.1
       version: 2.8.1
@@ -124,6 +127,9 @@ importers:
       '@starter-mono/eslint-config':
         specifier: workspace:*
         version: link:../../../packages/eslint-config
+      '@starter-mono/http':
+        specifier: workspace:*
+        version: link:../../../packages/http
       '@starter-mono/tsconfig':
         specifier: workspace:*
         version: link:../../../packages/tsconfig
@@ -157,6 +163,33 @@ importers:
       eslint-plugin-format:
         specifier: catalog:linting
         version: 1.2.0(eslint@9.39.2)
+
+  packages/http:
+    devDependencies:
+      '@rollup/plugin-node-resolve':
+        specifier: catalog:tooling
+        version: 16.0.3(rollup@4.55.1)
+      '@rollup/plugin-terser':
+        specifier: catalog:tooling
+        version: 0.4.4(rollup@4.55.1)
+      '@rollup/plugin-typescript':
+        specifier: catalog:tooling
+        version: 12.3.0(rollup@4.55.1)(tslib@2.8.1)(typescript@5.9.3)
+      '@starter-mono/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      rollup:
+        specifier: catalog:tooling
+        version: 4.55.1
+      rollup-plugin-dts:
+        specifier: catalog:tooling
+        version: 6.3.0(rollup@4.55.1)(typescript@5.9.3)
+      tslib:
+        specifier: catalog:tooling
+        version: 2.8.1
+      typescript:
+        specifier: catalog:tooling
+        version: 5.9.3
 
   packages/tsconfig: {}
 
@@ -224,6 +257,10 @@ packages:
     resolution: {integrity: sha512-Ckp971tmTw4pnv+o7iK85ldBHBKk6gxMaoNyLn3c2Th/fKoTG8G3jdYuOanpdGqwlDB0z01FOjry2d32lfTqrA==}
     peerDependencies:
       zod: ^4.0.0
+
+  '@babel/code-frame@7.27.1':
+    resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
+    engines: {node: '>=6.9.0'}
 
   '@babel/helper-string-parser@7.27.1':
     resolution: {integrity: sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==}
@@ -1463,6 +1500,9 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
+  js-tokens@4.0.0:
+    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+
   js-yaml@4.1.1:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
@@ -1858,6 +1898,13 @@ packages:
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
+  rollup-plugin-dts@6.3.0:
+    resolution: {integrity: sha512-d0UrqxYd8KyZ6i3M2Nx7WOMy708qsV/7fTHMHxCMCBOAe3V/U7OMPu5GkX8hC+cmkHhzGnfeYongl1IgiooddA==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      rollup: ^3.29.4 || ^4
+      typescript: ^4.5 || ^5.0
+
   rollup@4.55.1:
     resolution: {integrity: sha512-wDv/Ht1BNHB4upNbK74s9usvl7hObDnvVzknxqY/E/O3X6rW1U1rV1aENEfJ54eFZDTNo7zv1f5N4edCluH7+A==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -2144,6 +2191,13 @@ snapshots:
     dependencies:
       openapi3-ts: 4.5.0
       zod: 4.3.5
+
+  '@babel/code-frame@7.27.1':
+    dependencies:
+      '@babel/helper-validator-identifier': 7.28.5
+      js-tokens: 4.0.0
+      picocolors: 1.1.1
+    optional: true
 
   '@babel/helper-string-parser@7.27.1': {}
 
@@ -3307,6 +3361,9 @@ snapshots:
 
   isexe@2.0.0: {}
 
+  js-tokens@4.0.0:
+    optional: true
+
   js-yaml@4.1.1:
     dependencies:
       argparse: 2.0.1
@@ -3874,6 +3931,14 @@ snapshots:
       signal-exit: 4.1.0
 
   rfdc@1.4.1: {}
+
+  rollup-plugin-dts@6.3.0(rollup@4.55.1)(typescript@5.9.3):
+    dependencies:
+      magic-string: 0.30.21
+      rollup: 4.55.1
+      typescript: 5.9.3
+    optionalDependencies:
+      '@babel/code-frame': 7.27.1
 
   rollup@4.55.1:
     dependencies:

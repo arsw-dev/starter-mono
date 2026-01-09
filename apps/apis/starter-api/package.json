@@ -19,6 +19,7 @@
     "@rollup/plugin-terser": "catalog:tooling",
     "@rollup/plugin-typescript": "catalog:tooling",
     "@starter-mono/eslint-config": "workspace:*",
+    "@starter-mono/http": "workspace:*",
     "@starter-mono/tsconfig": "workspace:*",
     "@types/node": "catalog:tooling",
     "eslint-plugin-drizzle": "catalog:linting",

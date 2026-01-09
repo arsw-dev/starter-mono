@@ -1,0 +1,38 @@
+{
+  "name": "@starter-mono/http",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.27.0",
+  "author": "arsw-dev",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./status-codes": {
+      "types": "./dist/status/status.d.ts",
+      "import": "./dist/status/status.mjs",
+      "require": "./dist/status/status.cjs"
+    },
+    "./phrases": {
+      "types": "./dist/phrases/phrases.d.ts",
+      "import": "./dist/phrases/phrases.mjs",
+      "require": "./dist/phrases/phrases.cjs"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf node_modules/.cache && rm -rf dist && rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "catalog:tooling",
+    "@rollup/plugin-terser": "catalog:tooling",
+    "@rollup/plugin-typescript": "catalog:tooling",
+    "@starter-mono/tsconfig": "workspace:*",
+    "rollup": "catalog:tooling",
+    "rollup-plugin-dts": "catalog:tooling",
+    "tslib": "catalog:tooling",
+    "typescript": "catalog:tooling"
+  }
+}
