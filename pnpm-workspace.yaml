@@ -4,12 +4,14 @@ trustPolicy: no-downgrade
 
 packages:
   - 'apps/*'
+  - 'apps/apis/*'
   - 'packages/*'
 
 catalogs:
   linting:
     '@antfu/eslint-config': 6.7.3
     eslint: 9.39.2
+    eslint-plugin-drizzle: 0.2.3
     eslint-plugin-format: 1.2.0
 
   tooling:

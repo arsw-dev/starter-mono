@@ -1,0 +1,15 @@
+{
+  "name": "starter-api",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.27.0",
+  "author": "arsw-dev",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@starter-mono/eslint-config": "workspace:*",
+    "eslint": "catalog:linting",
+    "eslint-plugin-drizzle": "catalog:linting"
+  }
+}

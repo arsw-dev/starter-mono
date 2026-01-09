@@ -12,6 +12,9 @@ catalogs:
     eslint:
       specifier: 9.39.2
       version: 9.39.2
+    eslint-plugin-drizzle:
+      specifier: 0.2.3
+      version: 0.2.3
     eslint-plugin-format:
       specifier: 1.2.0
       version: 1.2.0
@@ -58,6 +61,18 @@ importers:
       typescript:
         specifier: catalog:tooling
         version: 5.9.3
+
+  apps/apis/starter-api:
+    devDependencies:
+      '@starter-mono/eslint-config':
+        specifier: workspace:*
+        version: link:../../../packages/eslint-config
+      eslint:
+        specifier: catalog:linting
+        version: 9.39.2
+      eslint-plugin-drizzle:
+        specifier: catalog:linting
+        version: 0.2.3(eslint@9.39.2)
 
   packages/eslint-config:
     dependencies:
@@ -801,6 +816,11 @@ packages:
     resolution: {integrity: sha512-EW4eg/a7TKEhG0s5IEti72kh3YOTlnhfFNuctq5WnB1fst37/IHTd5OkD+vnlRf3opTvUcSRihAateP6bT5ZcA==}
     peerDependencies:
       eslint: '*'
+
+  eslint-plugin-drizzle@0.2.3:
+    resolution: {integrity: sha512-BO+ymHo33IUNoJlC0rbd7HP9EwwpW4VIp49R/tWQF/d2E1K2kgTf0tCXT0v9MSiBr6gGR1LtPwMLapTKEWSg9A==}
+    peerDependencies:
+      eslint: '>=8.0.0'
 
   eslint-plugin-es-x@7.8.0:
     resolution: {integrity: sha512-7Ds8+wAAoV3T+LAKeu39Y5BzXCrGKrcISfgKEqTS4BDN8SFEDQd0S43jiQ8vIa3wUKD07qitZdfzlenSi8/0qQ==}
@@ -2350,6 +2370,10 @@ snapshots:
   eslint-plugin-command@3.4.0(eslint@9.39.2):
     dependencies:
       '@es-joy/jsdoccomment': 0.78.0
+      eslint: 9.39.2
+
+  eslint-plugin-drizzle@0.2.3(eslint@9.39.2):
+    dependencies:
       eslint: 9.39.2
 
   eslint-plugin-es-x@7.8.0(eslint@9.39.2):
