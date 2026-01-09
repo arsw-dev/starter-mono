@@ -1,17 +1,29 @@
 {
-  "extends": "@starter-mono/tsconfig/lib",
+  "extends": "@starter-mono/tsconfig/base",
   "compilerOptions": {
     "target": "ESNext",
-    "jsx": "react-jsx",
+
+    "jsx": "preserve",
     "jsxImportSource": "hono/jsx",
-    "module": "NodeNext",
-    "types": [
-      "node"
-    ],
+    "lib": ["ESNext", "DOM"],
+
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "strict": true,
-    "outDir": "./dist",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -2,19 +2,26 @@
   "name": "starter-api",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "dev": "tsx watch src/main.ts",
+    "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
+    "clean": "rm -rf dist && rm -rf .rollup.cache",
+    "start": "node dist/index.cjs"
   },
   "dependencies": {
     "@hono/node-server": "catalog:api",
     "hono": "catalog:api"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:tooling",
+    "@rollup/plugin-node-resolve": "catalog:tooling",
+    "@rollup/plugin-terser": "catalog:tooling",
+    "@rollup/plugin-typescript": "catalog:tooling",
     "@starter-mono/eslint-config": "workspace:*",
     "@starter-mono/tsconfig": "workspace:*",
     "@types/node": "catalog:tooling",
     "eslint-plugin-drizzle": "catalog:linting",
+    "rollup": "catalog:tooling",
+    "tslib": "catalog:tooling",
     "tsx": "catalog:tooling",
     "typescript": "catalog:tooling"
   }

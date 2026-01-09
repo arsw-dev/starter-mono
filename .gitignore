@@ -7,6 +7,8 @@ node_modules
 
 # build
 dist
+tsconfig.tsbuildinfo
+.rollup.cache
 
 # env
 .env

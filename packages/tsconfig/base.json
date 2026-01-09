@@ -16,7 +16,6 @@
     "isolatedModules": true,
     "skipLibCheck": true,
 
-    "composite": true,
     "incremental": true
   }
 }
