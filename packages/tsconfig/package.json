@@ -5,5 +5,10 @@
   "packageManager": "pnpm@10.27.0",
   "author": "arsw-dev",
   "license": "MIT",
+  "exports": {
+    "./base": "./base.json",
+    "./app": "./app.json",
+    "./lib": "./lib.json"
+  },
   "files": ["*.json"]
 }

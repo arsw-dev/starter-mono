@@ -1,5 +1,5 @@
 {
-  "extends": "@starter-mono/tsconfig/base.json",
+  "extends": "@starter-mono/tsconfig/base",
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,

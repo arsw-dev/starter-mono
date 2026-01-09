@@ -1,9 +1,17 @@
-node_modules
-dist
-.DS_Store
+# dev
 .vscode
 !.vscode/settings.json
 
+#deps
+node_modules
+
+# build
+dist
+
+# env
 .env
 .env.*
 !.env.example
+
+# misc
+.DS_Store

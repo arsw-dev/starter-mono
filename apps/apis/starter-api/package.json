@@ -1,15 +1,21 @@
 {
   "name": "starter-api",
-  "version": "1.0.0",
-  "packageManager": "pnpm@10.27.0",
-  "author": "arsw-dev",
-  "license": "MIT",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "catalog:api",
+    "hono": "catalog:api"
   },
   "devDependencies": {
     "@starter-mono/eslint-config": "workspace:*",
-    "eslint": "catalog:linting",
-    "eslint-plugin-drizzle": "catalog:linting"
+    "@starter-mono/tsconfig": "workspace:*",
+    "@types/node": "catalog:tooling",
+    "eslint-plugin-drizzle": "catalog:linting",
+    "tsx": "catalog:tooling",
+    "typescript": "catalog:tooling"
   }
 }

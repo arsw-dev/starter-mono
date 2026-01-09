@@ -8,6 +8,10 @@ packages:
   - 'packages/*'
 
 catalogs:
+  api:
+    '@hono/node-server': 1.19.6
+    hono: 4.11.3
+
   linting:
     '@antfu/eslint-config': 6.7.3
     eslint: 9.39.2
