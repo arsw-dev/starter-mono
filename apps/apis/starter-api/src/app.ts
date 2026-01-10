@@ -7,6 +7,7 @@ import { createApp } from '@/http/create';
 
 import pkgJson from '../package.json';
 import { indexRoute } from './routes';
+import { notesRouter } from './routes/notes';
 
 const app = createApp({
   title: 'Starter API',
@@ -15,6 +16,7 @@ const app = createApp({
 
 const routes = [
   indexRoute,
+  notesRouter,
 ];
 
 routes.forEach((route) => {
