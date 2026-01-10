@@ -2,6 +2,7 @@ import { createRoute } from '@hono/zod-openapi';
 import { OK } from '@starter-mono/http/status-codes';
 import { z } from 'zod';
 
+import { insertNotesSchema, selectNotesSchema } from '@/db/schema';
 import { jsonContent } from '@/http/openapi';
 
 const tags = ['Notes'];
@@ -12,12 +13,7 @@ const getNotes = createRoute({
   tags,
   responses: {
     [OK]: jsonContent(
-      z.array(
-        z.object({
-          note: z.string(),
-          name: z.string(),
-        }),
-      ),
+      z.array(selectNotesSchema),
       'Retrieves a list of all notes',
     ),
   },
@@ -25,5 +21,19 @@ const getNotes = createRoute({
 
 type GetNotes = typeof getNotes;
 
-export { getNotes };
-export type { GetNotes };
+const createNote = createRoute({
+  path: '/notes',
+  method: 'post',
+  tags,
+  request: {
+    body: { ...jsonContent(insertNotesSchema, 'The note to be created'), required: true },
+  },
+  responses: {
+    [OK]: jsonContent(selectNotesSchema, 'Returns the created note'),
+  },
+});
+
+type CreateNote = typeof createNote;
+
+export { createNote, getNotes };
+export type { CreateNote, GetNotes };

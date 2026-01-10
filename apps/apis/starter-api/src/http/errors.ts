@@ -18,8 +18,8 @@ const validationErrorHandler: Hook<any, any, any, any> = (result, c) => {
       {
         success: result.success,
         error: {
-          name: result.error.name,
-          issues: result.error.issues,
+          name: 'Validation Error',
+          issues: result.error.issues.map(issue => issue.message),
         },
       },
       UNPROCESSABLE_ENTITY,

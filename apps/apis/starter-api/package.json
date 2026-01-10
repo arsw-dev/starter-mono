@@ -16,6 +16,7 @@
     "dotenv": "catalog:shared",
     "dotenv-expand": "catalog:shared",
     "drizzle-orm": "catalog:api",
+    "drizzle-zod": "catalog:api",
     "hono": "catalog:api",
     "hono-pino": "catalog:api",
     "pg": "catalog:api",

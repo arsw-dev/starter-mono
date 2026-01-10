@@ -1,0 +1,2 @@
+ALTER TABLE "notes" ADD CONSTRAINT "notes_name_min_length" CHECK (length("notes"."name") >= 1);--> statement-breakpoint
+ALTER TABLE "notes" ADD CONSTRAINT "notes_note_min_length" CHECK (length("notes"."note") >= 1);

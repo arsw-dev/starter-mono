@@ -1,8 +1,9 @@
 import type { AppRouteHandler } from '@/types/route-handler';
 
 import { getDB } from '@/db';
+import { notesTable } from '@/db/schema';
 
-import type { GetNotes } from './routes';
+import type { CreateNote, GetNotes } from './routes';
 
 const getNotesHandler: AppRouteHandler<GetNotes> = async (c) => {
   const db = getDB();
@@ -11,4 +12,14 @@ const getNotesHandler: AppRouteHandler<GetNotes> = async (c) => {
   return c.json(notes);
 };
 
-export { getNotesHandler };
+const createNoteHandler: AppRouteHandler<CreateNote> = async (c) => {
+  const note = c.req.valid('json');
+
+  const db = getDB();
+
+  const [createdTask] = await db.insert(notesTable).values(note).returning();
+
+  return c.json(createdTask);
+};
+
+export { createNoteHandler, getNotesHandler };

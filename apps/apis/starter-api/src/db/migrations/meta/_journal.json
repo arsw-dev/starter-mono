@@ -15,6 +15,13 @@
       "when": 1768023546566,
       "tag": "0001_cuddly_spectrum",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1768027582828,
+      "tag": "0002_flippant_makkari",
+      "breakpoints": true
     }
   ]
 }
