@@ -1,8 +1,9 @@
 import { createRoute } from '@hono/zod-openapi';
-import { OK } from '@starter-mono/http/status-codes';
+import { OK, UNPROCESSABLE_ENTITY } from '@starter-mono/http/status-codes';
 import { z } from 'zod';
 
 import { insertNotesSchema, selectNotesSchema } from '@/db/schema';
+import { createErrorSchema } from '@/http/errors';
 import { jsonContent } from '@/http/openapi';
 
 const tags = ['Notes'];
@@ -30,6 +31,7 @@ const createNote = createRoute({
   },
   responses: {
     [OK]: jsonContent(selectNotesSchema, 'Returns the created note'),
+    [UNPROCESSABLE_ENTITY]: jsonContent(createErrorSchema(insertNotesSchema), 'Validation error(s)'),
   },
 });
 

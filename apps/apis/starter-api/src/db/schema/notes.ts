@@ -21,13 +21,13 @@ const notesTable = pgTable('notes', {
 ]);
 
 const selectNotesSchema = createSelectSchema(notesTable);
-const insertNotesSchema = createInsertSchema(notesTable).omit({
+const insertNotesSchema = createInsertSchema(notesTable, {
+  name: z.string().min(1),
+  note: z.string().min(1),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-}).extend({
-  name: z.string().min(1, 'name is required'),
-  note: z.string().min(1, 'note is required'),
 });
 
 export {

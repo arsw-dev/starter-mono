@@ -1,3 +1,5 @@
+import { OK } from '@starter-mono/http/status-codes';
+
 import type { AppRouteHandler } from '@/types/route-handler';
 
 import { getDB } from '@/db';
@@ -19,7 +21,7 @@ const createNoteHandler: AppRouteHandler<CreateNote> = async (c) => {
 
   const [createdTask] = await db.insert(notesTable).values(note).returning();
 
-  return c.json(createdTask);
+  return c.json(createdTask, OK);
 };
 
 export { createNoteHandler, getNotesHandler };
