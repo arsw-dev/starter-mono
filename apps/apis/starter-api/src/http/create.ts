@@ -4,11 +4,12 @@
  */
 
 import { OpenAPIHono } from '@hono/zod-openapi';
+import { Scalar } from '@scalar/hono-api-reference';
 import { requestId } from 'hono/request-id';
 
 import type { AppBindings } from '@/types/app-bindings';
 
-import { notFoundHandler, onErrorHandler } from './errors';
+import { notFoundHandler, onErrorHandler, validationErrorHandler } from './errors';
 import emojiFavicon from './favicon';
 import logger from './logger';
 
@@ -17,10 +18,13 @@ type CreateAppOptions = {
   title: string;
 };
 
+const createRouter = () => (new OpenAPIHono<AppBindings>({
+  strict: false,
+  defaultHook: validationErrorHandler,
+}));
+
 const createApp = ({ title, version }: CreateAppOptions) => {
-  const app = new OpenAPIHono<AppBindings>({
-    strict: false,
-  });
+  const app = createRouter();
 
   // Middleware
   // Core
@@ -34,7 +38,7 @@ const createApp = ({ title, version }: CreateAppOptions) => {
   app.notFound(notFoundHandler);
   app.onError(onErrorHandler);
 
-  app.doc('/docs', {
+  app.doc('/openapi', {
     openapi: '3.1.0',
     info: {
       title,
@@ -42,7 +46,9 @@ const createApp = ({ title, version }: CreateAppOptions) => {
     },
   });
 
+  app.get('/docs', Scalar({ url: '/openapi', theme: 'kepler', defaultHttpClient: { targetKey: 'js', clientKey: 'fetch' } }));
+
   return app;
 };
 
-export { createApp };
+export { createApp, createRouter };

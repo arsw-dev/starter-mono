@@ -25,6 +25,7 @@
     "@rollup/plugin-node-resolve": "catalog:tooling",
     "@rollup/plugin-terser": "catalog:tooling",
     "@rollup/plugin-typescript": "catalog:tooling",
+    "@scalar/hono-api-reference": "catalog:api",
     "@starter-mono/eslint-config": "workspace:*",
     "@starter-mono/http": "workspace:*",
     "@starter-mono/tsconfig": "workspace:*",

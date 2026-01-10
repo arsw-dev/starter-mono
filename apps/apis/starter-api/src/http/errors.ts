@@ -3,13 +3,29 @@
  * @description Error handlers for Hono API
  */
 
+import type { Hook } from '@hono/zod-openapi';
 import type { ErrorHandler, NotFoundHandler } from 'hono';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
 import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
-import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from '@starter-mono/http/status-codes';
+import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK, UNPROCESSABLE_ENTITY } from '@starter-mono/http/status-codes';
 
 import env from '@/utils/env';
+
+const validationErrorHandler: Hook<any, any, any, any> = (result, c) => {
+  if (!result.success) {
+    return c.json(
+      {
+        success: result.success,
+        error: {
+          name: result.error.name,
+          issues: result.error.issues,
+        },
+      },
+      UNPROCESSABLE_ENTITY,
+    );
+  }
+};
 
 const notFoundHandler: NotFoundHandler = (c) => {
   return c.json({ message: `${NOT_FOUND_MESSAGE} - ${c.req.path}` }, NOT_FOUND);
@@ -39,4 +55,5 @@ const onErrorHandler: ErrorHandler = (err, c) => {
 export {
   notFoundHandler,
   onErrorHandler,
+  validationErrorHandler,
 };
