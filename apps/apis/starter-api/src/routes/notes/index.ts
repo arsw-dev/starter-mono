@@ -7,6 +7,7 @@ const notesRouter = createRouter()
   .openapi(routes.getNotes, handlers.getNotesHandler)
   .openapi(routes.getOneNote, handlers.getOneNoteHandler)
   .openapi(routes.createNote, handlers.createNoteHandler)
-  .openapi(routes.updateNote, handlers.updateNoteHandler);
+  .openapi(routes.updateNote, handlers.updateNoteHandler)
+  .openapi(routes.deleteNote, handlers.deleteNoteHandler);
 
 export { notesRouter };

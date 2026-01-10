@@ -1,5 +1,5 @@
 import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
-import { NOT_FOUND, OK } from '@starter-mono/http/status-codes';
+import { CREATED, NO_CONTENT, NOT_FOUND, OK } from '@starter-mono/http/status-codes';
 import { eq } from 'drizzle-orm';
 
 import type { AppRouteHandler } from '@/types/route-handler';
@@ -7,11 +7,11 @@ import type { AppRouteHandler } from '@/types/route-handler';
 import { getDB } from '@/db';
 import { notesTable } from '@/db/schema';
 
-import type { CreateNote, GetNotes, GetOneNote, UpdateNote } from './routes';
+import type { CreateNote, DeleteNote, GetNotes, GetOneNote, UpdateNote } from './routes';
 
 const getNotesHandler: AppRouteHandler<GetNotes> = async (c) => {
   const db = getDB();
-  const notes = await db.query.notesTable.findMany();
+  const notes = await db.select().from(notesTable).orderBy(notesTable.createdAt, notesTable.id);
 
   return c.json(notes);
 };
@@ -42,7 +42,7 @@ const createNoteHandler: AppRouteHandler<CreateNote> = async (c) => {
 
   const [createdTask] = await db.insert(notesTable).values(note).returning();
 
-  return c.json(createdTask, OK);
+  return c.json(createdTask, CREATED);
 };
 
 const updateNoteHandler: AppRouteHandler<UpdateNote> = async (c) => {
@@ -53,7 +53,10 @@ const updateNoteHandler: AppRouteHandler<UpdateNote> = async (c) => {
 
   const [updatedNote] = await db
     .update(notesTable)
-    .set(updates)
+    .set({
+      ...updates,
+      updatedAt: new Date(),
+    })
     .where(eq(notesTable.id, id))
     .returning();
 
@@ -66,8 +69,25 @@ const updateNoteHandler: AppRouteHandler<UpdateNote> = async (c) => {
   return c.json(updatedNote, OK);
 };
 
+const deleteNoteHandler: AppRouteHandler<DeleteNote> = async (c) => {
+  const { id } = c.req.valid('param');
+  const db = getDB();
+
+  const [deletedNote] = await db
+    .delete(notesTable)
+    .where(eq(notesTable.id, id))
+    .returning();
+
+  if (!deletedNote) {
+    return c.json({ message: NOT_FOUND_MESSAGE }, NOT_FOUND);
+  }
+
+  return c.body(null, NO_CONTENT);
+};
+
 export {
   createNoteHandler,
+  deleteNoteHandler,
   getNotesHandler,
   getOneNoteHandler,
   updateNoteHandler,

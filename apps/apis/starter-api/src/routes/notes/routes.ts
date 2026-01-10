@@ -1,6 +1,8 @@
 import { createRoute } from '@hono/zod-openapi';
 import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
 import {
+  CREATED,
+  NO_CONTENT,
   NOT_FOUND,
   OK,
   UNPROCESSABLE_ENTITY,
@@ -61,7 +63,7 @@ const createNote = createRoute({
     ), required: true },
   },
   responses: {
-    [OK]: jsonContent(
+    [CREATED]: jsonContent(
       selectNotesSchema,
       'Returns the created note',
     ),
@@ -100,5 +102,26 @@ const updateNote = createRoute({
 
 type UpdateNote = typeof updateNote;
 
-export { createNote, getNotes, getOneNote, updateNote };
-export type { CreateNote, GetNotes, GetOneNote, UpdateNote };
+const deleteNote = createRoute({
+  path: '/notes/{id}',
+  method: 'delete',
+  tags,
+  request: {
+    params: idParamsSchema,
+  },
+  responses: {
+    [NO_CONTENT]: {
+      description: 'Note deleted',
+    },
+    [NOT_FOUND]: jsonContent(
+      createMessageObjectSchema(NOT_FOUND_MESSAGE),
+      'Requested note not found',
+    ),
+    [UNPROCESSABLE_ENTITY]: jsonContent(createErrorSchema(idParamsSchema), 'Invalid id'),
+  },
+});
+
+type DeleteNote = typeof deleteNote;
+
+export { createNote, deleteNote, getNotes, getOneNote, updateNote };
+export type { CreateNote, DeleteNote, GetNotes, GetOneNote, UpdateNote };
