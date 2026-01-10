@@ -8,7 +8,9 @@ import emojiFavicon from './favicon';
 import logger from './logger';
 
 const createApp = () => {
-  const app = new OpenAPIHono<AppBindings>();
+  const app = new OpenAPIHono<AppBindings>({
+    strict: false,
+  });
 
   // Middleware
   // Core
