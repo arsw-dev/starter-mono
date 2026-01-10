@@ -10,10 +10,12 @@
     "baseUrl": ".",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true,
     "noUncheckedSideEffectImports": true

@@ -15,6 +15,7 @@ const getNotes = createRoute({
       z.array(
         z.object({
           note: z.string(),
+          name: z.string(),
         }),
       ),
       'Retrieves a list of all notes',

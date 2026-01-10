@@ -9,6 +9,7 @@ import { requestId } from 'hono/request-id';
 
 import type { AppBindings } from '@/types/app-bindings';
 
+import { database } from './db';
 import { notFoundHandler, onErrorHandler, validationErrorHandler } from './errors';
 import emojiFavicon from './favicon';
 import logger from './logger';
@@ -30,6 +31,7 @@ const createApp = ({ title, version }: CreateAppOptions) => {
   // Core
   app.use(requestId());
   app.use(logger());
+  app.use(database());
 
   // UX
   app.use(emojiFavicon('🔥'));

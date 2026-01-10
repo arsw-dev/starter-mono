@@ -1,3 +1,11 @@
-import baseConfig from '@starter-mono/eslint-config';
+import { createConfig } from '@starter-mono/eslint-config';
 
-export default baseConfig;
+export default createConfig({
+  ignores: [
+    '**/dist/**',
+    '**/migrations/**',
+    '**/.drizzle/**',
+    '**/node_modules/**',
+    '**/.rollup.cache/**',
+  ],
+});

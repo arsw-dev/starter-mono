@@ -5,9 +5,12 @@
 
 import type { PinoLogger } from 'hono-pino';
 
+import type { Database } from './database';
+
 type AppBindings = {
   Variables: {
     logger: PinoLogger;
+    db: Database;
   };
 };
 
