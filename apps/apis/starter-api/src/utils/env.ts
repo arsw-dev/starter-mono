@@ -13,6 +13,12 @@ expand(config({ quiet: true }));
 const environmentSchema = z.object({
   NODE_ENV: z.string().min(1),
   SERVER_PORT: z.coerce.number(),
+  // db
+  POSTGRES_USER: z.string().min(1),
+  POSTGRES_PASSWORD: z.string().min(1),
+  POSTGRES_DB: z.string().min(1),
+  POSTGRES_PORT: z.string().min(1),
+  DATABASE_URL: z.string().min(1),
 });
 
 // eslint-disable-next-line node/no-process-env

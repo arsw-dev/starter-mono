@@ -12,8 +12,12 @@ catalogs:
     '@hono/node-server': 1.19.6
     '@hono/zod-openapi': 1.2.0
     '@scalar/hono-api-reference': 0.9.32
+    '@types/pg': 8.16.0
+    drizzle-kit: 0.31.8
+    drizzle-orm: 0.45.1
     hono: 4.11.3
     hono-pino: 0.10.3
+    pg: 8.16.3
     pino: 10.1.1
     pino-pretty: 13.1.3
 
