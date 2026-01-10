@@ -1,12 +1,12 @@
 import { sql } from 'drizzle-orm';
-import { check, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { check, pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import z from 'zod';
 
 const notesTable = pgTable('notes', {
   id: serial().primaryKey(),
   name: varchar({ length: 256 }).notNull(),
-  note: varchar({ length: 256 }).notNull(),
+  note: text().notNull(),
   createdAt: timestamp().defaultNow().notNull(),
   updatedAt: timestamp().defaultNow().notNull(),
 }, t => [
@@ -22,7 +22,7 @@ const notesTable = pgTable('notes', {
 
 const selectNotesSchema = createSelectSchema(notesTable);
 const insertNotesSchema = createInsertSchema(notesTable, {
-  name: z.string().min(1),
+  name: z.string().min(1).max(256),
   note: z.string().min(1),
 }).omit({
   id: true,
