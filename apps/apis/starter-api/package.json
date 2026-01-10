@@ -11,6 +11,7 @@
     "@hono/node-server": "catalog:api",
     "@hono/zod-openapi": "catalog:api",
     "dotenv": "catalog:shared",
+    "dotenv-expand": "catalog:shared",
     "hono": "catalog:api",
     "hono-pino": "catalog:api",
     "pino": "catalog:api",
