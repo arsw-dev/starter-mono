@@ -5,6 +5,8 @@ import * as routes from './routes';
 
 const notesRouter = createRouter()
   .openapi(routes.getNotes, handlers.getNotesHandler)
-  .openapi(routes.createNote, handlers.createNoteHandler);
+  .openapi(routes.getOneNote, handlers.getOneNoteHandler)
+  .openapi(routes.createNote, handlers.createNoteHandler)
+  .openapi(routes.updateNote, handlers.updateNoteHandler);
 
 export { notesRouter };

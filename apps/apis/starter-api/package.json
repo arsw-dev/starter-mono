@@ -25,6 +25,7 @@
     "zod": "catalog:shared"
   },
   "devDependencies": {
+    "@asteasolutions/zod-to-openapi": "catalog:api",
     "@rollup/plugin-commonjs": "catalog:tooling",
     "@rollup/plugin-json": "catalog:tooling",
     "@rollup/plugin-node-resolve": "catalog:tooling",

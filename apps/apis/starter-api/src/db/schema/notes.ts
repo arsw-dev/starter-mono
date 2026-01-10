@@ -21,6 +21,7 @@ const notesTable = pgTable('notes', {
 ]);
 
 const selectNotesSchema = createSelectSchema(notesTable);
+
 const insertNotesSchema = createInsertSchema(notesTable, {
   name: z.string().min(1).max(256),
   note: z.string().min(1),
@@ -30,8 +31,16 @@ const insertNotesSchema = createInsertSchema(notesTable, {
   updatedAt: true,
 });
 
+const patchNoteSchema = insertNotesSchema.partial().refine(
+  data => Object.keys(data).length > 0,
+  {
+    message: 'At least one field must be provided',
+  },
+);
+
 export {
   insertNotesSchema,
   notesTable,
+  patchNoteSchema,
   selectNotesSchema,
 };

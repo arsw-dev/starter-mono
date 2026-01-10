@@ -9,6 +9,7 @@ packages:
 
 catalogs:
   api:
+    '@asteasolutions/zod-to-openapi': 8.4.0
     '@hono/node-server': 1.19.6
     '@hono/zod-openapi': 1.2.0
     '@scalar/hono-api-reference': 0.9.32

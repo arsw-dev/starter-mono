@@ -1,10 +1,16 @@
 import { createRoute } from '@hono/zod-openapi';
-import { OK, UNPROCESSABLE_ENTITY } from '@starter-mono/http/status-codes';
+import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
+import {
+  NOT_FOUND,
+  OK,
+  UNPROCESSABLE_ENTITY,
+} from '@starter-mono/http/status-codes';
 import { z } from 'zod';
 
-import { insertNotesSchema, selectNotesSchema } from '@/db/schema';
+import { insertNotesSchema, patchNoteSchema, selectNotesSchema } from '@/db/schema';
 import { createErrorSchema } from '@/http/errors';
-import { jsonContent } from '@/http/openapi';
+import { jsonContent, jsonContentOneOf } from '@/http/openapi';
+import { createMessageObjectSchema, idParamsSchema } from '@/http/schemas';
 
 const tags = ['Notes'];
 
@@ -22,20 +28,77 @@ const getNotes = createRoute({
 
 type GetNotes = typeof getNotes;
 
+const getOneNote = createRoute({
+  path: '/notes/{id}',
+  method: 'get',
+  tags,
+  request: {
+    params: idParamsSchema,
+  },
+  responses: {
+    [OK]: jsonContent(selectNotesSchema, 'Retrieves note by id'),
+    [UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(idParamsSchema),
+      'Invalid id',
+    ),
+    [NOT_FOUND]: jsonContent(
+      createMessageObjectSchema(NOT_FOUND_MESSAGE),
+      'Requested note not found',
+    ),
+  },
+});
+
+type GetOneNote = typeof getOneNote;
+
 const createNote = createRoute({
   path: '/notes',
   method: 'post',
   tags,
   request: {
-    body: { ...jsonContent(insertNotesSchema, 'The note to be created'), required: true },
+    body: { ...jsonContent(
+      insertNotesSchema,
+      'The note to be created',
+    ), required: true },
   },
   responses: {
-    [OK]: jsonContent(selectNotesSchema, 'Returns the created note'),
-    [UNPROCESSABLE_ENTITY]: jsonContent(createErrorSchema(insertNotesSchema), 'Validation error(s)'),
+    [OK]: jsonContent(
+      selectNotesSchema,
+      'Returns the created note',
+    ),
+    [UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(insertNotesSchema),
+      'Validation error(s)',
+    ),
   },
 });
 
 type CreateNote = typeof createNote;
 
-export { createNote, getNotes };
-export type { CreateNote, GetNotes };
+const updateNote = createRoute({
+  path: '/notes/{id}',
+  method: 'patch',
+  tags,
+  request: {
+    params: idParamsSchema,
+    body: { ...jsonContent(patchNoteSchema, 'Note updates'), required: true },
+  },
+  responses: {
+    [OK]: jsonContent(
+      selectNotesSchema,
+      'Updates and returns note',
+    ),
+    [UNPROCESSABLE_ENTITY]: jsonContentOneOf([
+      createErrorSchema(idParamsSchema),
+      createErrorSchema(patchNoteSchema),
+    ], 'Validation error(s)'),
+    [NOT_FOUND]: jsonContent(
+      createMessageObjectSchema(NOT_FOUND_MESSAGE),
+      'Requested note not found',
+    ),
+  },
+});
+
+type UpdateNote = typeof updateNote;
+
+export { createNote, getNotes, getOneNote, updateNote };
+export type { CreateNote, GetNotes, GetOneNote, UpdateNote };

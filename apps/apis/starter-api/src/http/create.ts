@@ -48,7 +48,15 @@ const createApp = ({ title, version }: CreateAppOptions) => {
     },
   });
 
-  app.get('/docs', Scalar({ url: '/openapi', theme: 'kepler', defaultHttpClient: { targetKey: 'js', clientKey: 'fetch' } }));
+  app.get('/docs', Scalar({
+    url: '/openapi',
+    theme: 'kepler',
+    defaultHttpClient: {
+      targetKey: 'js',
+      clientKey: 'fetch',
+    },
+    hideClientButton: true,
+  }));
 
   return app;
 };
