@@ -1,3 +1,8 @@
+/**
+ * @file logger.ts
+ * @description Logger Middleware w/ pinoLogger
+ */
+
 import { pinoLogger } from 'hono-pino';
 import pino from 'pino';
 import pretty from 'pino-pretty';

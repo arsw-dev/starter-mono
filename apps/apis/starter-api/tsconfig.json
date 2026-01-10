@@ -14,13 +14,13 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "resolveJsonModule": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmit": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },

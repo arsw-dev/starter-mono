@@ -1,3 +1,8 @@
+/**
+ * @file main.ts
+ * @description Entry point for nodejs hono openAPI server
+ */
+
 /* eslint-disable import/no-duplicates */
 import '@/utils/env';
 

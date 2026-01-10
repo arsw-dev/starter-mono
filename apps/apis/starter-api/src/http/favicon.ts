@@ -1,3 +1,8 @@
+/**
+ * @file favicon.ts
+ * @description Middleware to serve an emoji as favicon
+ */
+
 import type { MiddlewareHandler } from 'hono';
 
 const emojiFavicon = (emoji: string): MiddlewareHandler => {

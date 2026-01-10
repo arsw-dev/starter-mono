@@ -1,9 +1,15 @@
+/**
+ * @file app.ts
+ * @description Initializes server app
+ */
+
 import { createApp } from '@/http/create-app';
 
-const app = createApp();
+import pkgJson from '../package.json';
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!');
+const app = createApp({
+  title: 'Starter API',
+  version: pkgJson.version,
 });
 
 export default app;

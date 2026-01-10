@@ -1,6 +1,7 @@
 {
   "name": "starter-api",
   "type": "module",
+  "version": "1.0.0",
   "scripts": {
     "dev": "tsx watch src/main.ts",
     "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:tooling",
+    "@rollup/plugin-json": "catalog:tooling",
     "@rollup/plugin-node-resolve": "catalog:tooling",
     "@rollup/plugin-terser": "catalog:tooling",
     "@rollup/plugin-typescript": "catalog:tooling",

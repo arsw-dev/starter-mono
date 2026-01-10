@@ -1,3 +1,8 @@
+/**
+ * @file errors.ts
+ * @description Error handlers for Hono API
+ */
+
 import type { ErrorHandler, NotFoundHandler } from 'hono';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
