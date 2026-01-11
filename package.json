@@ -9,9 +9,17 @@
     "lint": "eslint",
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
-    "dev:db": "docker compose up -d",
-    "dev:db:down": "docker compose down",
-    "dev:db:logs": "docker compose logs -f"
+
+    "build:package:http": "pnpm run --prefix ./packages/http build",
+    "build:packages": "pnpm build:package:http",
+
+    "docker:db": "docker compose up postgres -d",
+    "docker:db:down": "docker compose down postgres",
+    "docker:db:logs": "docker compose logs -f postgres",
+
+    "docker:starter-api": "docker compose up starter-api -d",
+    "docker:starter-api:down": "docker compose down starter-api",
+    "docker:starter-api:logs": "docker compose logs -f starter-api"
   },
   "dependencies": {
     "@starter-mono/eslint-config": "workspace:*"

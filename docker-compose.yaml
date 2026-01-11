@@ -1,9 +1,27 @@
 services:
   postgres:
     image: postgres:18
-    container_name: starter-api-postgres
+    container_name: postgres
     restart: unless-stopped
     env_file:
       - .env
     ports:
       - '${POSTGRES_PORT}:5432'
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U $POSTGRES_USER]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  starter-api:
+    container_name: starter-api
+    build:
+      dockerfile: ./apps/apis/starter-api/Dockerfile
+    environment:
+      DOCKER: true
+    ports:
+      - '4000:4000'
+    env_file:
+      - ./apps/apis/starter-api/.env.docker
+    depends_on:
+      - postgres
