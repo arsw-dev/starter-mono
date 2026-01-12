@@ -1,0 +1,29 @@
+{
+  "name": "web",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "catalog:react",
+    "react-dom": "catalog:react"
+  },
+  "devDependencies": {
+    "@eslint-react/eslint-plugin": "catalog:linting",
+    "@starter-mono/eslint-config": "workspace:*",
+    "@tanstack/eslint-plugin-query": "catalog:linting",
+    "@types/node": "catalog:tooling",
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
+    "@vitejs/plugin-react": "catalog:react",
+    "babel-plugin-react-compiler": "catalog:react",
+    "eslint-plugin-react-hooks": "catalog:linting",
+    "eslint-plugin-react-refresh": "catalog:linting",
+    "typescript": "catalog:tooling",
+    "vite": "catalog:react"
+  }
+}

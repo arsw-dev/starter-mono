@@ -2,10 +2,16 @@ shellEmulator: true
 
 trustPolicy: no-downgrade
 
+trustPolicyExclude:
+  - semver@6.3.1
+
 packages:
   - 'apps/*'
   - 'apps/apis/*'
   - 'packages/*'
+
+overrides:
+  vite: npm:rolldown-vite@7.2.5
 
 catalogs:
   api:
@@ -25,9 +31,22 @@ catalogs:
 
   linting:
     '@antfu/eslint-config': 6.7.3
+    '@eslint-react/eslint-plugin': 2.5.5
+    '@tanstack/eslint-plugin-query': 5.91.2
     eslint: 9.39.2
     eslint-plugin-drizzle: 0.2.3
     eslint-plugin-format: 1.2.0
+    eslint-plugin-react-hooks: 7.0.1
+    eslint-plugin-react-refresh: 0.4.26
+
+  react:
+    '@types/react': 19.2.5
+    '@types/react-dom': 19.2.3
+    '@vitejs/plugin-react': 5.1.1
+    babel-plugin-react-compiler: 1.0.0
+    react: 19.2.0
+    react-dom: 19.2.0
+    vite: npm:rolldown-vite@7.2.5
 
   shared:
     dotenv: 17.2.3
