@@ -7,5 +7,6 @@ export default createConfig({
     '**/.drizzle/**',
     '**/node_modules/**',
     '**/.rollup.cache/**',
+    '**/routeTree.gen.ts',
   ],
 });

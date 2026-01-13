@@ -9,13 +9,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "catalog:frontend",
+    "@tanstack/react-query": "catalog:react",
+    "@tanstack/react-query-devtools": "catalog:react",
+    "@tanstack/react-router": "catalog:react",
+    "@tanstack/react-router-devtools": "catalog:react",
     "react": "catalog:react",
-    "react-dom": "catalog:react"
+    "react-dom": "catalog:react",
+    "tailwindcss": "catalog:frontend",
+    "zustand": "catalog:react"
   },
   "devDependencies": {
     "@eslint-react/eslint-plugin": "catalog:linting",
     "@starter-mono/eslint-config": "workspace:*",
     "@tanstack/eslint-plugin-query": "catalog:linting",
+    "@tanstack/router-plugin": "catalog:react",
     "@types/node": "catalog:tooling",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",

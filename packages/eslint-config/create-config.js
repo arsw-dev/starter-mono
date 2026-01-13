@@ -16,18 +16,7 @@ const createConfig = (options, ...userConfigs) => {
     {
       rules: {
         'ts/consistent-type-definitions': ['error', 'type'],
-        'no-restricted-syntax': ['error', {
-          selector: 'ExportNamedDeclaration > VariableDeclaration',
-          message: 'Do not export variables directly. Use `export { name }` instead.',
-        }, {
-          selector: 'ExportNamedDeclaration > FunctionDeclaration',
-          message: 'Do not export functions directly. Use `export { name }` instead.',
-        }, {
-          selector: 'ExportDefaultDeclaration > FunctionDeclaration',
-          message: 'Do not export default functions directly. Declare first, then export.',
-        }],
         'no-console': ['warn'],
-        'func-style': ['error'],
         'antfu/no-top-level-await': ['off'],
         'antfu/top-level-function': ['off'],
         'node/prefer-global/process': ['off'],

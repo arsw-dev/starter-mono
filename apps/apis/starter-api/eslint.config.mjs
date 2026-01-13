@@ -6,5 +6,16 @@ export default createConfig({
   plugins: { drizzle },
   rules: {
     ...drizzle.configs.recommended.rules,
+    'no-restricted-syntax': ['error', {
+      selector: 'ExportNamedDeclaration > VariableDeclaration',
+      message: 'Do not export variables directly. Use `export { name }` instead.',
+    }, {
+      selector: 'ExportNamedDeclaration > FunctionDeclaration',
+      message: 'Do not export functions directly. Use `export { name }` instead.',
+    }, {
+      selector: 'ExportDefaultDeclaration > FunctionDeclaration',
+      message: 'Do not export default functions directly. Declare first, then export.',
+    }],
+    'func-style': ['error'],
   },
 });
