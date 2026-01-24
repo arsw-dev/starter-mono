@@ -9,6 +9,7 @@ import { cn } from '@/utils/cn';
 
 import { useAllNotesQuery } from '../queries';
 import CreateNoteDialog from './create-note.dialog';
+import DeleteNoteDialog from './delete-note.dialog';
 import NoteInfoDialog from './note-info.dialog';
 import NoteSkeleton from './note-skeleton';
 import NoteTile from './note-tile';
@@ -24,9 +25,10 @@ const NotesWrapper = ({ children, className }: { children?: ReactNode; className
 const NotesList = () => {
   const { data: notes, isFetching } = useAllNotesQuery();
 
-  const [createDialogOpen, setCreateDialogOpen] = useState(false);
-
   const [noteDialogOpen, setNoteDialogOpen] = useState(false);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
 
   const openNoteDialog = (note: Note) => {
@@ -34,53 +36,61 @@ const NotesList = () => {
     setNoteDialogOpen(true);
   };
 
-  if (isFetching) {
-    return (
-      <NotesWrapper className="gap-4">
-        {Array.from({ length: 5 }).map((_, idx) => <NoteSkeleton key={idx} />)}
-        <div className="absolute right-4 bottom-4 size-8 animate-pulse rounded-sm bg-zinc-400" />
-      </NotesWrapper>
-    );
-  }
+  const openDeleteNoteDialog = (note: Note) => {
+    setActiveNote(note);
+    setDeleteDialogOpen(true);
+  };
 
-  if (!notes?.length) {
-    return (
-      <>
-        <NotesWrapper className="items-center justify-center gap-2">
-          <span>
-            You haven't made any notes
-          </span>
-          <button
-            className="cursor-pointer rounded-sm bg-blue-400 px-3 py-1 text-white"
-            onClick={() => setCreateDialogOpen(true)}
-          >
-            Create Note
-          </button>
-        </NotesWrapper>
-        <CreateNoteDialog
-          open={createDialogOpen}
-          onOpenChange={setCreateDialogOpen}
-        />
-      </>
-    );
-  }
+  const noNotes = notes?.length === 0;
 
   return (
     <>
-      <NotesWrapper className="gap-4">
-        {notes.map(note => (
-          <NoteTile
-            key={note.id}
-            note={note}
-            onClick={() => openNoteDialog(note)}
-          />
-        ))}
-        <button
-          onClick={() => setCreateDialogOpen(true)}
-          className="absolute right-4 bottom-4 flex size-8 cursor-pointer items-center justify-center rounded-sm bg-blue-400"
-        >
-          <Plus className="text-white" />
-        </button>
+      <NotesWrapper className={cn(
+        isFetching
+          ? 'gap-4'
+          : noNotes ? 'items-center justify-center gap-2' : 'gap-4',
+      )}
+      >
+        {isFetching
+          ? (
+              <>
+                {Array.from({ length: 5 })
+                  .map((_, idx) => <NoteSkeleton key={idx} />)}
+                <div className="absolute right-4 bottom-4 size-8 animate-pulse rounded-sm bg-zinc-400" />
+              </>
+            )
+          : noNotes
+            ? (
+                <>
+                  <span>
+                    You haven't made any notes
+                  </span>
+                  <button
+                    className="cursor-pointer rounded-sm bg-blue-400 px-3 py-1 text-white"
+                    onClick={() => setCreateDialogOpen(true)}
+                  >
+                    Create Note
+                  </button>
+                </>
+              )
+            : (
+                <>
+                  {notes?.map(note => (
+                    <NoteTile
+                      key={note.id}
+                      note={note}
+                      onClick={() => openNoteDialog(note)}
+                      onDeleteClick={() => openDeleteNoteDialog(note)}
+                    />
+                  ))}
+                  <button
+                    onClick={() => setCreateDialogOpen(true)}
+                    className="absolute right-4 bottom-4 flex size-8 cursor-pointer items-center justify-center rounded-sm bg-blue-400"
+                  >
+                    <Plus className="text-white" />
+                  </button>
+                </>
+              )}
       </NotesWrapper>
       <CreateNoteDialog
         open={createDialogOpen}
@@ -88,8 +98,14 @@ const NotesList = () => {
       />
       <NoteInfoDialog
         note={activeNote}
-        open={noteDialogOpen && !!activeNote}
+        open={noteDialogOpen}
         onOpenChange={setNoteDialogOpen}
+        onCloseComplete={() => setActiveNote(undefined)}
+      />
+      <DeleteNoteDialog
+        note={activeNote}
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
         onCloseComplete={() => setActiveNote(undefined)}
       />
     </>

@@ -1,8 +1,17 @@
+import { Edit3 } from 'lucide-react';
+import { useState } from 'react';
+
 import type { Note } from '@/types/notes';
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
-type NoteInfoProps = {
+type NoteInfoDialogProps = {
   note: Note | undefined;
   open: boolean;
   onOpenChange: (next: boolean) => void;
@@ -14,7 +23,9 @@ const NoteInfoDialog = ({
   open,
   onOpenChange,
   onCloseComplete,
-}: NoteInfoProps) => {
+}: NoteInfoDialogProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
     <Dialog
       open={open}
@@ -31,8 +42,43 @@ const NoteInfoDialog = ({
         {note && (
           <>
             <DialogHeader>
-              <DialogTitle>{note.name}</DialogTitle>
-              <DialogDescription className="sr-only">Note details like name and the note itself</DialogDescription>
+              <DialogTitle asChild>
+                <div className="flex items-center justify-between">
+                  <span>
+                    {note.name}
+                  </span>
+                  {isEditing
+                    ? (
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => setIsEditing(false)}
+                            className="flex h-8 cursor-pointer items-center justify-center rounded-sm bg-blue-400 px-3 py-1 font-normal text-white"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            onClick={() => setIsEditing(false)}
+                            className="flex h-8 cursor-pointer items-center justify-center rounded-sm bg-blue-400 px-3 py-1 font-normal text-white"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      )
+                    : (
+                        <button
+                          onClick={() => setIsEditing(true)}
+                          className="flex size-8 cursor-pointer items-center justify-center rounded-sm bg-blue-400 p-2"
+                        >
+                          <Edit3 className="text-white" />
+                        </button>
+                      )}
+                </div>
+              </DialogTitle>
+              <DialogDescription
+                className="sr-only"
+              >
+                Note details like name and the note itself
+              </DialogDescription>
             </DialogHeader>
             <div>{note.note}</div>
           </>

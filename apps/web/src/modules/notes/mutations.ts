@@ -14,4 +14,16 @@ const useCreateNoteMutation = () => {
   });
 };
 
-export { useCreateNoteMutation };
+const useDeleteNoteMutation = () => {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationKey: ['DELETE', 'NOTE'],
+    mutationFn: notesApi.delete,
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['ALL', 'NOTES'] });
+    },
+  });
+};
+
+export { useCreateNoteMutation, useDeleteNoteMutation };
