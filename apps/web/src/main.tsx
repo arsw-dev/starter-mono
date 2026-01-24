@@ -1,10 +1,11 @@
 import '@/utils/env';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import ReactDOM from 'react-dom/client';
 
-import { routeTree } from './routeTree.gen';
+import { routeTree } from '@/routeTree.gen';
+import { queryClient } from '@/utils/query-client';
 
 const router = createRouter({ routeTree });
 
@@ -14,8 +15,6 @@ declare module '@tanstack/react-router' {
     router: typeof router;
   }
 }
-
-const queryClient = new QueryClient();
 
 const rootElement = document.getElementById('root')!;
 
