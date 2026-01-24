@@ -17,6 +17,13 @@ export default ({ mode }: UserConfig) => {
     envPrefix: ENV_PREFIX,
     server: {
       port: Number(process.env.WEB_PORT ?? 5173),
+      proxy: {
+        '/api': {
+          target: 'http://localhost:4000',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, ''),
+        },
+      },
     },
     plugins: [
       tailwindcss(),
