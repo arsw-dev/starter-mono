@@ -2,12 +2,6 @@
   "name": "starter-api",
   "type": "module",
   "version": "1.0.0",
-  "exports": {
-    "./schemas/notes": {
-      "import": {}
-    }
-  },
-
   "scripts": {
     "dev": "tsx watch src/main.ts",
     "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
