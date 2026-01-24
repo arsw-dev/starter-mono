@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "catalog:react",
     "@radix-ui/react-dialog": "catalog:react",
     "@tailwindcss/vite": "catalog:frontend",
     "@tanstack/react-query": "catalog:react",
@@ -20,6 +21,7 @@
     "lucide-react": "catalog:react",
     "react": "catalog:react",
     "react-dom": "catalog:react",
+    "react-hook-form": "catalog:react",
     "tailwind-merge": "catalog:frontend",
     "tailwindcss": "catalog:frontend",
     "xior": "catalog:frontend",
