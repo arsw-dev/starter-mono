@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 
 import CreateNoteForm from './create-note.form';
 
-const CreateNote = ({
+const CreateNoteDialog = ({
   open,
   onOpenChange,
 }: { open: boolean; onOpenChange: (next: boolean) => void }) => {
@@ -26,4 +26,4 @@ const CreateNote = ({
   );
 };
 
-export default CreateNote;
+export default CreateNoteDialog;

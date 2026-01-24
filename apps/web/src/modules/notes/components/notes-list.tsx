@@ -1,12 +1,15 @@
 import type { ReactNode } from 'react';
 
 import { Plus } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+
+import type { Note } from '@/types/notes';
 
 import { cn } from '@/utils/cn';
 
 import { useAllNotesQuery } from '../queries';
-import CreateNote from './create-note.dialog';
+import CreateNoteDialog from './create-note.dialog';
+import NoteInfoDialog from './note-info.dialog';
 import NoteSkeleton from './note-skeleton';
 import NoteTile from './note-tile';
 
@@ -18,20 +21,23 @@ const NotesWrapper = ({ children, className }: { children?: ReactNode; className
   );
 };
 
-const NotesSkeletons = () => {
-  const skeletonIds = useMemo(() => Array.from({ length: 5 }).map(() => crypto.randomUUID()), []);
-
-  return skeletonIds.map(id => <NoteSkeleton key={id} />);
-};
-
 const NotesList = () => {
   const { data: notes, isFetching } = useAllNotesQuery();
-  const [open, setOpen] = useState(false);
+
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
+  const [noteDialogOpen, setNoteDialogOpen] = useState(false);
+  const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
+
+  const openNoteDialog = (note: Note) => {
+    setActiveNote(note);
+    setNoteDialogOpen(true);
+  };
 
   if (isFetching) {
     return (
       <NotesWrapper className="gap-4">
-        <NotesSkeletons />
+        {Array.from({ length: 5 }).map((_, idx) => <NoteSkeleton key={idx} />)}
         <div className="absolute right-4 bottom-4 size-8 animate-pulse rounded-sm bg-zinc-400" />
       </NotesWrapper>
     );
@@ -46,14 +52,14 @@ const NotesList = () => {
           </span>
           <button
             className="cursor-pointer rounded-sm bg-blue-400 px-3 py-1 text-white"
-            onClick={() => setOpen(true)}
+            onClick={() => setCreateDialogOpen(true)}
           >
             Create Note
           </button>
         </NotesWrapper>
-        <CreateNote
-          open={open}
-          onOpenChange={setOpen}
+        <CreateNoteDialog
+          open={createDialogOpen}
+          onOpenChange={setCreateDialogOpen}
         />
       </>
     );
@@ -62,17 +68,29 @@ const NotesList = () => {
   return (
     <>
       <NotesWrapper className="gap-4">
-        {notes.map(note => <NoteTile key={note.id} note={note} />)}
+        {notes.map(note => (
+          <NoteTile
+            key={note.id}
+            note={note}
+            onClick={() => openNoteDialog(note)}
+          />
+        ))}
         <button
+          onClick={() => setCreateDialogOpen(true)}
           className="absolute right-4 bottom-4 flex size-8 cursor-pointer items-center justify-center rounded-sm bg-blue-400"
-          onClick={() => setOpen(true)}
         >
           <Plus className="text-white" />
         </button>
       </NotesWrapper>
-      <CreateNote
-        open={open}
-        onOpenChange={setOpen}
+      <CreateNoteDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+      />
+      <NoteInfoDialog
+        note={activeNote}
+        open={noteDialogOpen && !!activeNote}
+        onOpenChange={setNoteDialogOpen}
+        onCloseComplete={() => setActiveNote(undefined)}
       />
     </>
   );

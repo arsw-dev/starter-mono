@@ -19,6 +19,7 @@ export default createConfig({
   rules: {
     ...tailwindcss.configs.recommended.rules,
     'func-style': ['off'],
+    'react/no-array-index-key': ['off'],
     'no-restricted-syntax': ['off'],
     'antfu/top-level-function': 'off',
     '@tanstack/query/exhaustive-deps': 'error',
