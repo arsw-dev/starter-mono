@@ -9,7 +9,7 @@ const RootLayout = () => (
     </div>
     <Outlet />
     <TanStackRouterDevtools />
-    <ReactQueryDevtools />
+    <ReactQueryDevtools buttonPosition="top-right" />
   </>
 );
 
