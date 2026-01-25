@@ -9,7 +9,7 @@ import {
 } from '@starter-mono/http/status-codes';
 import { z } from 'zod';
 
-import { insertNotesSchema, patchNoteSchema, selectNotesSchema } from '@/db/schema';
+import { insertNotesSchema, patchNoteSchema, selectNotesSchema } from '@/db/schemas';
 import { createErrorSchema } from '@/http/errors';
 import { jsonContent, jsonContentOneOf } from '@/http/openapi';
 import { createMessageObjectSchema, idParamsSchema } from '@/http/schemas';

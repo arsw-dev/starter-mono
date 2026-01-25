@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm';
 import type { AppRouteHandler } from '@/types/route-handler';
 
 import { getDB } from '@/db';
-import { notesTable } from '@/db/schema';
+import { notesTable } from '@/db/schemas';
 
 import type { CreateNote, DeleteNote, GetNotes, GetOneNote, UpdateNote } from './routes';
 

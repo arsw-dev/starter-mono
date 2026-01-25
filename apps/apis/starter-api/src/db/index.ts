@@ -5,7 +5,7 @@ import type { Database } from '@/types/database';
 
 import env from '@/utils/env';
 
-import * as schema from './schema';
+import * as schema from './schemas';
 
 let db: Database;
 
