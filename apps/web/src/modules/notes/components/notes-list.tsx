@@ -23,7 +23,7 @@ const NotesWrapper = ({ children, className }: { children?: ReactNode; className
 };
 
 const NotesList = () => {
-  const { data: notes, isFetching } = useAllNotesQuery();
+  const { data: notes, isLoading } = useAllNotesQuery();
 
   const [noteDialogOpen, setNoteDialogOpen] = useState(false);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -46,12 +46,12 @@ const NotesList = () => {
   return (
     <>
       <NotesWrapper className={cn(
-        isFetching
+        isLoading
           ? 'gap-4'
           : noNotes ? 'items-center justify-center gap-2' : 'gap-4',
       )}
       >
-        {isFetching
+        {isLoading
           ? (
               <>
                 {Array.from({ length: 5 })

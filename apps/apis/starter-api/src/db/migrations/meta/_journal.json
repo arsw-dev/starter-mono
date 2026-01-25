@@ -29,6 +29,20 @@
       "when": 1768059813280,
       "tag": "0003_friendly_tattoo",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1769364539597,
+      "tag": "0004_quick_lord_tyger",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1769364820129,
+      "tag": "0005_faulty_sphinx",
+      "breakpoints": true
     }
   ]
 }

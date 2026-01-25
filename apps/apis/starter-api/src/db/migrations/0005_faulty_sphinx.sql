@@ -1,0 +1,1 @@
+CREATE TYPE "public"."note_type" AS ENUM('general', 'shopping', 'work');

@@ -1,8 +1,17 @@
 import { z } from 'zod';
 
+import { zString } from '@/utils/zod';
+
 const createNoteSchema = z.object({
-  name: z.string().min(1).max(256),
-  note: z.string().min(1),
+  title: zString({
+    type: 'required',
+    max: 256,
+    fieldName: 'Title',
+  }),
+  note: zString({
+    type: 'required',
+    fieldName: 'Note',
+  }),
 });
 
 type CreateNote = z.infer<typeof createNoteSchema>;

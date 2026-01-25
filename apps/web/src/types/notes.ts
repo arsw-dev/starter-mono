@@ -1,6 +1,6 @@
 type Note = {
   id: number;
-  name: string;
+  title: string;
   note: string;
   createdAt: Date;
   updatedAt: Date;

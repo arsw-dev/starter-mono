@@ -1,16 +1,11 @@
 import { Loader2 } from 'lucide-react';
-import { Controller } from 'react-hook-form';
 
 import type { MutationParams } from '@/types/mutations';
+import type { Note } from '@/types/notes';
 
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Form } from '@/components/form';
+import FormInput from '@/components/form/form-input';
+import FormTextarea from '@/components/form/form-textarea';
 
 import type { CreateNote } from '../forms/create-note';
 
@@ -19,60 +14,27 @@ import { useCreateNoteForm } from '../forms/create-note';
 const CreateNoteForm = ({
   onSuccess,
   onError,
-}: MutationParams<CreateNote>) => {
+}: MutationParams<Note>) => {
   const { form, onSubmit, isSubmitting } = useCreateNoteForm();
 
   return (
-    <form
+    <Form
+      form={form}
       id="create-note"
-      className="space-y-2"
+      className="space-y-4"
       onSubmit={onSubmit({ onSuccess, onError })}
     >
-      <FieldGroup>
-        <Controller
-          name="name"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="create-note-name">
-                Name
-              </FieldLabel>
-              <Input
-                {...field}
-                id="create-note-name"
-                aria-invalid={fieldState.invalid}
-                placeholder="Note name"
-                autoComplete="off"
-              />
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
-            </Field>
-          )}
-        />
-        <Controller
-          name="note"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="create-note-note">
-                Note
-              </FieldLabel>
-              <Textarea
-                {...field}
-                id="create-note-note"
-                aria-invalid={fieldState.invalid}
-                placeholder="Note"
-                autoComplete="off"
-                className="h-30 resize-none"
-              />
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
-            </Field>
-          )}
-        />
-      </FieldGroup>
+      <FormInput<CreateNote>
+        name="title"
+        label="Title"
+        required
+      />
+      <FormTextarea<CreateNote>
+        name="note"
+        label="Note"
+        className="h-30"
+        required
+      />
       <div className="flex justify-end">
         <button
           type="submit"
@@ -82,7 +44,7 @@ const CreateNoteForm = ({
           {isSubmitting ? <Loader2 className="animate-spin" /> : `Create Note`}
         </button>
       </div>
-    </form>
+    </Form>
   );
 };
 

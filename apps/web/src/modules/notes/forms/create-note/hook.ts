@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import type { MutationParams } from '@/types/mutations';
+import type { Note } from '@/types/notes';
 
 import type { CreateNote } from './schema';
 
@@ -12,14 +13,14 @@ const useCreateNoteForm = () => {
   const form = useForm<CreateNote>({
     resolver: zodResolver(createNoteSchema),
     defaultValues: {
-      name: '',
+      title: '',
       note: '',
     },
   });
 
   const mutation = useCreateNoteMutation();
 
-  const onSubmit = (params?: MutationParams<CreateNote>) =>
+  const onSubmit = (params?: MutationParams<Note>) =>
     form.handleSubmit((values) => {
       mutation.mutate(values, params);
     });

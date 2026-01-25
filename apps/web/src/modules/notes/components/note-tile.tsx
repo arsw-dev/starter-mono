@@ -17,7 +17,7 @@ const NoteTile = ({
     <div
       className="flex h-9 cursor-pointer items-center justify-between gap-2 rounded-sm border border-zinc-400 px-2"
     >
-      <span onClick={onClick} className="flex h-full flex-1 items-center">{note.name}</span>
+      <span onClick={onClick} className="flex h-full flex-1 items-center">{note.title}</span>
       <button
         onClick={onDeleteClick}
         className="flex size-7 cursor-pointer items-center justify-center rounded-sm bg-red-400"

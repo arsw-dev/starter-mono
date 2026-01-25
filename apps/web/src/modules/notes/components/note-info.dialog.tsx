@@ -45,7 +45,7 @@ const NoteInfoDialog = ({
               <DialogTitle asChild>
                 <div className="flex items-center justify-between">
                   <span>
-                    {note.name}
+                    {note.title}
                   </span>
                   {isEditing
                     ? (
