@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/main.ts",
     "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
-    "clean": "rm -rf dist && rm -rf .rollup.cache",
+    "clean": "rm -rf dist && rm -rf .rollup.cache && rm tsconfig.tsbuildinfo",
     "start": "node dist/index.cjs",
     "lint": "eslint",
     "lint:fix": "eslint . --fix"
