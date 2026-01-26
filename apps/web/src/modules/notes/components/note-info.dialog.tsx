@@ -1,7 +1,7 @@
+import type { Note } from '@starter-mono/types';
+
 import { Edit3 } from 'lucide-react';
 import { useState } from 'react';
-
-import type { Note } from '@/types/notes';
 
 import {
   Dialog,

@@ -1,0 +1,32 @@
+{
+  "name": "@starter-mono/types",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.27.0",
+  "author": "arsw-dev",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "index.ts",
+  "scripts": {
+    "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
+    "clean": "rm -rf dist && rm -rf .rollup.cache && rm -rf tsconfig.tsbuildinfo"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "catalog:tooling",
+    "@rollup/plugin-terser": "catalog:tooling",
+    "@rollup/plugin-typescript": "catalog:tooling",
+    "@starter-mono/eslint-config": "workspace:*",
+    "@starter-mono/tsconfig": "workspace:*",
+    "@types/node": "catalog:tooling",
+    "rollup": "catalog:tooling",
+    "rollup-plugin-dts": "catalog:tooling",
+    "tslib": "catalog:tooling",
+    "tsx": "catalog:tooling",
+    "typescript": "catalog:tooling"
+  }
+}

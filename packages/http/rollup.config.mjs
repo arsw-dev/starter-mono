@@ -7,10 +7,17 @@ import pkg from './package.json' with { type: 'json' };
 
 // Base JS config
 const baseConfig = {
-  external: [...Object.keys(pkg.dependencies ?? {}), ...Object.keys(pkg.peerDependencies ?? {})],
+  external: [
+    ...Object.keys(pkg.dependencies ?? {}),
+    ...Object.keys(pkg.peerDependencies ?? {}),
+  ],
   plugins: [
     resolve(),
-    typescript({ tsconfig: './tsconfig.json', outputToFilesystem: false, declaration: false }),
+    typescript({
+      tsconfig: './tsconfig.json',
+      outputToFilesystem: false,
+      declaration: false,
+    }),
     terser(),
   ],
 };
@@ -66,4 +73,11 @@ const phrasesTypes = {
   plugins: [dts()],
 };
 
-export default [indexConfig, indexTypes, statusConfig, statusTypes, phrasesConfig, phrasesTypes];
+export default [
+  indexConfig,
+  indexTypes,
+  statusConfig,
+  statusTypes,
+  phrasesConfig,
+  phrasesTypes,
+];

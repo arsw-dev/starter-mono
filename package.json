@@ -11,7 +11,8 @@
     "prepare": "husky",
 
     "build:package:http": "pnpm run --prefix ./packages/http build",
-    "build:packages": "pnpm build:package:http",
+    "build:package:types": "pnpm run --prefix ./packages/types build",
+    "build:packages": "pnpm build:package:http && pnpm build:package:types",
 
     "docker:db": "docker compose up postgres -d",
     "docker:db:down": "docker compose down postgres",

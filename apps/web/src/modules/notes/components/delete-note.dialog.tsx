@@ -1,6 +1,6 @@
-import { Loader2 } from 'lucide-react';
+import type { Note } from '@starter-mono/types';
 
-import type { Note } from '@/types/notes';
+import { Loader2 } from 'lucide-react';
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 

@@ -1,7 +1,8 @@
+import type { Note } from '@starter-mono/types';
+
 import { Loader2 } from 'lucide-react';
 
 import type { MutationParams } from '@/types/mutations';
-import type { Note } from '@/types/notes';
 
 import { Form } from '@/components/form';
 import FormInput from '@/components/form/form-input';

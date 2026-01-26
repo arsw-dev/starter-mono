@@ -1,6 +1,6 @@
-import { Trash2 } from 'lucide-react';
+import type { Note } from '@starter-mono/types';
 
-import type { Note } from '@/types/notes';
+import { Trash2 } from 'lucide-react';
 
 type NoteTileProps = {
   note: Note;

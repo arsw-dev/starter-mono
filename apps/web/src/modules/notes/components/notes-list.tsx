@@ -1,9 +1,8 @@
+import type { Note } from '@starter-mono/types';
 import type { ReactNode } from 'react';
 
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
-
-import type { Note } from '@/types/notes';
 
 import { cn } from '@/utils/cn';
 

@@ -1,8 +1,9 @@
+import type { Note } from '@starter-mono/types';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import type { MutationParams } from '@/types/mutations';
-import type { Note } from '@/types/notes';
 
 import type { CreateNote } from './schema';
 

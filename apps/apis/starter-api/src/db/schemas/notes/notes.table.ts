@@ -1,13 +1,21 @@
+import { NoteType } from '@starter-mono/types';
 import { sql } from 'drizzle-orm';
-import { boolean, check, integer, pgEnum, pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  check,
+  integer,
+  pgEnum,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar,
+} from 'drizzle-orm/pg-core';
 
-enum NoteType {
-  general = 'general',
-  shopping = 'shopping',
-  work = 'work',
-}
-
-const noteTypeEnum = pgEnum('note_type', Object.values(NoteType) as [NoteType, ...NoteType[]]);
+const noteTypeEnum = pgEnum(
+  'note_type',
+  Object.values(NoteType) as [NoteType, ...NoteType[]],
+);
 
 const notesTable = pgTable(
   'notes',
@@ -15,9 +23,7 @@ const notesTable = pgTable(
     id: serial().primaryKey(),
 
     title: varchar({ length: 256 }).notNull(),
-
     note: text().notNull(),
-
     subtitle: varchar({ length: 256 }),
 
     priority: integer().default(0),

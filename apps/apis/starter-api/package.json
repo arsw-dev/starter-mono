@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/main.ts",
     "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
-    "clean": "rm -rf dist && rm -rf .rollup.cache && rm tsconfig.tsbuildinfo",
+    "clean": "rm -rf dist && rm -rf .rollup.cache && rm -rf tsconfig.tsbuildinfo",
     "start": "node dist/index.cjs",
     "lint": "eslint",
     "lint:fix": "eslint . --fix"
@@ -13,6 +13,8 @@
   "dependencies": {
     "@hono/node-server": "catalog:api",
     "@hono/zod-openapi": "catalog:api",
+    "@starter-mono/http": "workspace:*",
+    "@starter-mono/types": "workspace:*",
     "dotenv": "catalog:shared",
     "dotenv-expand": "catalog:shared",
     "drizzle-orm": "catalog:api",
@@ -33,7 +35,6 @@
     "@rollup/plugin-typescript": "catalog:tooling",
     "@scalar/hono-api-reference": "catalog:api",
     "@starter-mono/eslint-config": "workspace:*",
-    "@starter-mono/http": "workspace:*",
     "@starter-mono/tsconfig": "workspace:*",
     "@types/node": "catalog:tooling",
     "@types/pg": "catalog:api",

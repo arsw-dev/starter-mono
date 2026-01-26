@@ -14,6 +14,7 @@
     "@radix-ui/react-label": "catalog:react",
     "@radix-ui/react-separator": "catalog:react",
     "@radix-ui/react-slot": "catalog:react",
+    "@starter-mono/types": "workspace:*",
     "@tailwindcss/vite": "catalog:frontend",
     "@tanstack/react-query": "catalog:react",
     "@tanstack/react-query-devtools": "catalog:react",
