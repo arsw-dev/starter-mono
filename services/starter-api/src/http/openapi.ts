@@ -6,6 +6,7 @@ import {
   OpenApiGeneratorV3,
   OpenAPIRegistry,
 } from '@asteasolutions/zod-to-openapi';
+import { z } from 'zod';
 
 const jsonContent = <T extends ZodType>(
   schema: T,
@@ -52,4 +53,19 @@ const jsonContentOneOf = <
   };
 };
 
-export { jsonContent, jsonContentOneOf };
+const withExample = <T extends z.ZodObject<any>>(schema: T, example: z.infer<T>) => {
+  const { shape } = schema;
+
+  const newShape = Object.fromEntries(
+    Object.entries(shape).map(([key, field]) => {
+      const value = example[key as keyof typeof example];
+      return value !== undefined
+        ? [key, (field as z.ZodAny).openapi({ example: value })]
+        : [key, field];
+    }),
+  );
+
+  return z.object(newShape) as T;
+};
+
+export { jsonContent, jsonContentOneOf, withExample };
