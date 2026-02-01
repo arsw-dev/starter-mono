@@ -16,12 +16,12 @@ services:
   starter-api:
     container_name: starter-api
     build:
-      dockerfile: ./apps/apis/starter-api/Dockerfile
+      dockerfile: ./services/starter-api/Dockerfile
     environment:
       DOCKER: true
     ports:
       - '4000:4000'
     env_file:
-      - ./apps/apis/starter-api/.env.docker
+      - ./services/starter-api/.env.docker
     depends_on:
       - postgres

@@ -9,7 +9,7 @@ WORKDIR /app
 # Copy package files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/ ./packages
-COPY apps/apis/starter-api/ ./apps/apis/starter-api/
+COPY services/starter-api/ ./services/starter-api/
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile
@@ -20,11 +20,11 @@ RUN pnpm build:packages
 FROM base AS build
 
 # Copy source code
-COPY apps/apis/starter-api ./apps/apis/starter-api/
+COPY services/starter-api ./services/starter-api/
 COPY packages/ ./packages/
 
 # Build app
-WORKDIR /app/apps/apis/starter-api
+WORKDIR /app/services/starter-api
 RUN pnpm build
 
 EXPOSE 4000
