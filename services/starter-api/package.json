@@ -6,9 +6,7 @@
     "dev": "tsx watch src/main.ts",
     "build": "rm -rf node_modules/.cache && pnpm clean && rollup -c --no-cache",
     "clean": "rm -rf dist && rm -rf .rollup.cache && rm -rf tsconfig.tsbuildinfo",
-    "start": "node dist/index.cjs",
-    "lint": "eslint",
-    "lint:fix": "eslint . --fix"
+    "start": "node dist/index.cjs"
   },
   "dependencies": {
     "@hono/node-server": "catalog:api",
@@ -34,13 +32,9 @@
     "@rollup/plugin-terser": "catalog:tooling",
     "@rollup/plugin-typescript": "catalog:tooling",
     "@scalar/hono-api-reference": "catalog:api",
-    "@starter-mono/eslint-config": "workspace:*",
     "@starter-mono/tsconfig": "workspace:*",
-    "@types/node": "catalog:tooling",
     "@types/pg": "catalog:api",
     "drizzle-kit": "catalog:api",
-    "eslint": "catalog:linting",
-    "eslint-plugin-drizzle": "catalog:linting",
     "rollup": "catalog:tooling",
     "rollup-plugin-dts": "catalog:tooling",
     "tslib": "catalog:tooling",

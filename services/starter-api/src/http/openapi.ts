@@ -1,11 +1,11 @@
 import type { ZodType } from 'zod';
 
+import type { ZodSchema } from '@/types/zod-schema';
+
 import {
   OpenApiGeneratorV3,
   OpenAPIRegistry,
 } from '@asteasolutions/zod-to-openapi';
-
-import type { ZodSchema } from '@/types/zod-schema';
 
 const jsonContent = <T extends ZodType>(
   schema: T,

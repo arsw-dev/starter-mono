@@ -33,18 +33,12 @@
     "zustand": "catalog:react"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "catalog:linting",
-    "@starter-mono/eslint-config": "workspace:*",
-    "@tanstack/eslint-plugin-query": "catalog:linting",
     "@tanstack/router-plugin": "catalog:react",
     "@types/node": "catalog:tooling",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "@vitejs/plugin-react": "catalog:react",
     "babel-plugin-react-compiler": "catalog:react",
-    "eslint-plugin-react-hooks": "catalog:linting",
-    "eslint-plugin-react-refresh": "catalog:linting",
-    "eslint-plugin-tailwindcss": "catalog:linting",
     "tw-animate-css": "catalog:frontend",
     "typescript": "catalog:tooling",
     "vite": "catalog:react"

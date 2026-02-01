@@ -3,11 +3,11 @@
  * @description Creates Hono app with middleware & handlers (errors & docs)
  */
 
+import type { AppBindings } from '@/types/app-bindings';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { Scalar } from '@scalar/hono-api-reference';
-import { requestId } from 'hono/request-id';
 
-import type { AppBindings } from '@/types/app-bindings';
+import { requestId } from 'hono/request-id';
 
 import { database } from './db';
 import { notFoundHandler, onErrorHandler, validationErrorHandler } from './errors';

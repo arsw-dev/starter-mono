@@ -7,7 +7,7 @@ trustPolicyExclude:
 
 packages:
   - apps/*
-  - apps/apis/*
+  - services/*
   - packages/*
 
 overrides:
@@ -39,7 +39,7 @@ catalogs:
     xior: 0.8.3
 
   linting:
-    '@antfu/eslint-config': 6.7.3
+    '@antfu/eslint-config': 7.2.0
     '@eslint-react/eslint-plugin': 2.5.5
     '@tanstack/eslint-plugin-query': 5.91.2
     eslint: 9.39.2
@@ -47,7 +47,6 @@ catalogs:
     eslint-plugin-format: 1.2.0
     eslint-plugin-react-hooks: 7.0.1
     eslint-plugin-react-refresh: 0.4.26
-    eslint-plugin-tailwindcss: 4.0.0-beta.0
 
   react:
     '@hookform/resolvers': 5.2.2

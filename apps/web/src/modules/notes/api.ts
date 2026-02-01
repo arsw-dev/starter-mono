@@ -1,8 +1,8 @@
 import type { Note } from '@starter-mono/types';
 
-import { apiClient } from '@/utils/api-client';
-
 import type { CreateNote } from './forms/create-note';
+
+import { apiClient } from '@/utils/api-client';
 
 const notesApi = {
   getAll: async () => {

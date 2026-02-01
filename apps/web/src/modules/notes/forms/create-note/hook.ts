@@ -1,11 +1,11 @@
 import type { Note } from '@starter-mono/types';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-
+import type { CreateNote } from './schema';
 import type { MutationParams } from '@/types/mutations';
 
-import type { CreateNote } from './schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { useForm } from 'react-hook-form';
 
 import { useCreateNoteMutation } from '../../mutations';
 import { createNoteSchema } from './schema';

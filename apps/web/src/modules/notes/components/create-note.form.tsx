@@ -1,14 +1,14 @@
 import type { Note } from '@starter-mono/types';
 
-import { Loader2 } from 'lucide-react';
+import type { CreateNote } from '../forms/create-note';
 
 import type { MutationParams } from '@/types/mutations';
 
+import { Loader2 } from 'lucide-react';
 import { Form } from '@/components/form';
 import FormInput from '@/components/form/form-input';
-import FormTextarea from '@/components/form/form-textarea';
 
-import type { CreateNote } from '../forms/create-note';
+import FormTextarea from '@/components/form/form-textarea';
 
 import { useCreateNoteForm } from '../forms/create-note';
 

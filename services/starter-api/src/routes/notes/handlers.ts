@@ -1,13 +1,13 @@
-import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
-import { CREATED, NO_CONTENT, NOT_FOUND, OK } from '@starter-mono/http/status-codes';
-import { eq } from 'drizzle-orm';
-
-import type { AppRouteHandler } from '@/types/route-handler';
-
-import { getDB } from '@/db';
-import { notesTable } from '@/db/schemas';
-
 import type { CreateNote, DeleteNote, GetNotes, GetOneNote, UpdateNote } from './routes';
+import type { AppRouteHandler } from '@/types/route-handler';
+import { NOT_FOUND as NOT_FOUND_MESSAGE } from '@starter-mono/http/phrases';
+
+import { CREATED, NO_CONTENT, NOT_FOUND, OK } from '@starter-mono/http/status-codes';
+
+import { eq } from 'drizzle-orm';
+import { getDB } from '@/db';
+
+import { notesTable } from '@/db/schemas';
 
 const getNotesHandler: AppRouteHandler<GetNotes> = async (c) => {
   const db = getDB();

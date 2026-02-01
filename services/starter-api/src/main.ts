@@ -3,13 +3,12 @@
  * @description Entry point for nodejs hono openAPI server
  */
 
-/* eslint-disable import/no-duplicates */
-import '@/utils/env';
+/* eslint-disable perfectionist/sort-imports */
+import env from '@/utils/env';
 
 import { serve } from '@hono/node-server';
 
 import app from '@/app';
-import env from '@/utils/env';
 
 import { connectToDB } from './db';
 

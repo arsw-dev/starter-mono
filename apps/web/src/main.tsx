@@ -1,3 +1,4 @@
+/* eslint-disable perfectionist/sort-imports */
 import '@/utils/env';
 
 import { QueryClientProvider } from '@tanstack/react-query';
