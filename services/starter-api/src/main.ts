@@ -10,7 +10,7 @@ import { serve } from '@hono/node-server';
 
 import app from '@/app';
 
-import { connectToDB } from './db';
+import { connectToDB } from '@/db';
 
 const startServer = async () => {
   await connectToDB();
